@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json');
-if (!preg_match('/^[A-Z0-9]{3,4}$/i', $_SERVER['REQUEST_URI'], $matches)) die(json_encode(['error' => 'Invalid airport ID (usage: https://ctaf.aifr.us/airport_id)']));
+if (!preg_match('/^[A-Z0-9]{3,4}$/i', $_SERVER['REQUEST_URI'], $matches)) die(json_encode(['error' => 'Invalid airport ID']));
 $sql = mysqli_connect('127.0.0.1', 'aifr', 'aifr', 'NASR_INDEX');
 if (mysqli_connect_errno()) die(json_encode(['error' => 'Database connection error']));
 $query = "SELECT `name` FROM `INDEX` WHERE `preview` = 0 ORDER BY `id` DESC LIMIT 1";
