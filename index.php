@@ -1,7 +1,6 @@
 <?php
 header('Content-Type: application/json');
-$airport_ids = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
-array_shift($airport_ids);
+$airport_ids = explode(',', substr($_SERVER['REQUEST_URI'], 1));
 if (empty($airport_ids)) die(json_encode(['error' => 'No airport IDs provided']));
 foreach ($airport_ids as $airport_id) if (!preg_match('/^[a-zA-Z0-9-]+$/', $airport_id)) die(json_encode(['error' => 'Invalid airport ID']));
 $results = [];
